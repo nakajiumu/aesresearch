@@ -1,5 +1,3 @@
-// script8.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const redOnlyButton = document.getElementById('redOnlyButton');
     const threeColorsButton = document.getElementById('threeColorsButton');
@@ -119,13 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 result1HTML += `<li>テスト ${index + 1}: ${time} 秒</li>`;
             });
             result1HTML += `</ul><p>平均反応速度: ${(reactionTimesRed.reduce((a, b) => a + b, 0) / reactionTimesRed.length).toFixed(3)} 秒</p>`;
-            result1Div.innerHTML = `<h3>Test1の結果</h3>` + result1HTML + 
-                                   `<div class="button-container">
-                                        <button id="copyResult1" onclick="copyToClipboard('result1')">結果をコピー</button>
-                                        <a id="tweetResult1" href="#" target="_blank">
-                                            <img src="twitter.png" alt="ツイートする">
-                                        </a>
-                                    </div>`;
+            result1Div.innerHTML = `<h3>Test1の結果</h3>` + result1HTML + `<button onclick="copyToClipboard('result1')">コピー</button>` + 
+                                   `<button onclick="tweetResult('私の反応速度は', '${reactionTimesRed.join(', ')}', ${(reactionTimesRed.reduce((a, b) => a + b, 0) / reactionTimesRed.length).toFixed(3)})">ツイート</button>`;
             result1Div.style.display = 'block'; // 結果コンテナを表示する
         }
         if (reactionTimesThree.length > 0) {
@@ -133,13 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 result2HTML += `<li>テスト ${index + 1}: ${time} 秒</li>`;
             });
             result2HTML += `</ul><p>平均反応速度: ${(reactionTimesThree.reduce((a, b) => a + b, 0) / reactionTimesThree.length).toFixed(3)} 秒</p>`;
-            result2Div.innerHTML = `<h3>Test2の結果</h3>` + result2HTML + 
-                                   `<div class="button-container">
-                                        <button id="copyResult2" onclick="copyToClipboard('result2')">結果をコピー</button>
-                                        <a id="tweetResult2" href="#" target="_blank">
-                                            <img src="twitter.png" alt="ツイートする">
-                                        </a>
-                                    </div>`;
+            result2Div.innerHTML = `<h3>Test2の結果</h3>` + result2HTML + `<button onclick="copyToClipboard('result2')">コピー</button>` + 
+                                   `<button onclick="tweetResult('私の反応速度は', '${reactionTimesThree.join(', ')}', ${(reactionTimesThree.reduce((a, b) => a + b, 0) / reactionTimesThree.length).toFixed(3)})">ツイート</button>`;
             result2Div.style.display = 'block'; // 結果コンテナを表示する
         }
         message.textContent = ''; // メッセージをクリアする
@@ -149,22 +137,20 @@ document.addEventListener('DOMContentLoaded', function() {
         buttonContainer.style.display = 'flex'; // ボタンを再表示する
     }
 
-
     window.copyToClipboard = function(elementId) {
         const el = document.getElementById(elementId);
         const range = document.createRange();
-        range.selectNodeContents(el.querySelector('ul'));
+        range.selectNodeContents(el);
         const selection = window.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand('copy');
         alert('結果がコピーされました');
     }
-    
+
     window.tweetResult = function(testTitle, results, average) {
         const tweetText = `${testTitle}${average}秒だ!`;
         const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
         window.open(tweetUrl, '_blank');
     }
 });
-
