@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#container {
+    width: 100%;
+}
+
+#title-container {
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+#button-container {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mode-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mode-button:hover {
+    background-color: #0056b3;
+}
+
+#startButton {
+    display: none;
+}
+
+#message {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+#results {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+/*.result-container {
+    width: 45%;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}*/
+.result-container {
+    display: none; /* 初期状態は非表示 */
+}
+.result-container h3 {
+    margin-top: 0;
+}
